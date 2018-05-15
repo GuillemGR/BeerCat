@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+  products: "Products"
+  name: "Name"
+  price: "Price"
+  producer: "Maker"
+  quantity: "Stock quantity"
+  confirmation: "Are you sure?"
+  ex: "English"
+  full_name: "Full Name"
+  description: "Description"

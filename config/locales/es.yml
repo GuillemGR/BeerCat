@@ -1,0 +1,11 @@
+es:
+  products: "Productos"
+  name: "Nombre"
+  price: "Precio"
+  producer: "Fabricante"
+  quantity: "Cantidad en stock"
+  confirmation: "Esta seguro?"
+  ex: "Español"
+  param: "Parametro"
+  full_name: "Nombre Completo"
+  description: "Descripcion"

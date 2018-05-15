@@ -1,0 +1,57 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :product_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :product_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image, id: :product_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :producer %>
+    <%= form.text_field :producer, id: :product_producer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, id: :product_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label t('description')+' Español' %>
+    <%= form.text_area 'description_es', id: :description_es %>
+  </div>
+
+  <div class="field">
+    <%= form.label t('description')+' Catala' %>
+    <%= form.text_area 'description_cat', id: :description_cat %>
+  </div>
+
+  <div class="field">
+    <%= form.label t('description')+' English' %>
+    <%= form.text_area 'description_en', id: :description_en %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

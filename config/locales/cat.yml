@@ -1,0 +1,10 @@
+cat:
+  products: "Productes"
+  name: "Nom"
+  price: "Preu"
+  producer: "Fabricant"
+  quantity: "Quantitat en stock"
+  confirmation: "Estas segur?"
+  ex: "Catala"
+  full_name: "Nom Complet"
+  description: "Descripcio"
