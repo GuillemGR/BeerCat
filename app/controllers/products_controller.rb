@@ -12,19 +12,28 @@ class ProductsController < ApplicationController
   def show
     @description
     if params[:locale] == 'es'
-      @description = @product.descriptions.find_by(language: Language.find_by(code: 'es')).description
+      @description = @product.descriptions.find_by(language: 'es').description
     end
     if params[:locale] == 'cat'
-      @description = @product.descriptions.find_by(language: Language.find_by(code: 'cat')).description
+      @description = @product.descriptions.find_by(language: 'cat').description
     end
     if params[:locale] == 'en'
-      @description = @product.descriptions.find_by(language: Language.find_by(code: 'en')).description
+      @description = @product.descriptions.find_by(language: 'en').description
     end
+    if params[:locale].nil?
+     @description = @product.descriptions.find_by(language: 'cat').description
+    end
+    @cathegory =  Cathegory.find(@product.cathegory_id).name
   end
 
   # GET /products/new
   def new
+    if admin_signed_in?
     @product = Product.new
+    @cathegories = Cathegory.all
+    else
+      redirect_to '/'
+    end
   end
 
   # GET /products/1/edit
@@ -35,9 +44,9 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    Description.create(product: @product, language: Language.find_by(code: 'es'), description: params[:product][:description_es])
-    Description.create(product: @product, language: Language.find_by(code: 'cat'), description: params[:product][:description_cat])
-    Description.create(product: @product, language: Language.find_by(code: 'en'), description: params[:product][:description_en])
+    Description.create(product: @product, language: 'es', description: params[:product][:description_es])
+    Description.create(product: @product, language: 'cat', description: params[:product][:description_cat])
+    Description.create(product: @product, language: 'en', description: params[:product][:description_en])
 
 
     respond_to do |format|
@@ -83,6 +92,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :price, :image, :producer, :quantity)
+      params.require(:product).permit(:name, :price, :image, :producer, :quantity, :cathegory_id)
     end
 end

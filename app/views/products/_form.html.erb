@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :quantity %>
-    <%= form.number_field :quantity, id: :product_quantity %>
+    <%= form.number_field :cathegories, id: :product_quantity %>
   </div>
 
   <div class="field">
@@ -50,7 +50,9 @@
     <%= form.label t('description')+' English' %>
     <%= form.text_area 'description_en', id: :description_en %>
   </div>
-
+  <div class="field">
+   <%= form.collection_select :cathegory_id, Cathegory.all, :id, :name %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

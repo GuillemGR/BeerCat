@@ -14,11 +14,15 @@
 
     <title>BeerCat</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="main-content">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="/welcome">BeerCat</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,10 +31,22 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <%= link_to 'Cataleg', products_path , { :class=> 'nav-link'}%>
+            <% if user_signed_in? %>
+              <p class="navbar-brand" >Welcome</p>
+            <% else %>
+            <%= link_to 'Login', user_session_path, {:class => 'nav-link'} %>
+            <% end %>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+
+            <%= link_to t('catalog'), products_path, {:class => 'nav-link'} %>
+          </li>
+          <li class="nav-item">
+            <% if admin_signed_in? %>
+              <%= link_to('Logout admin', destroy_admin_session_path, method: :delete, :class => 'nav-link') %>
+            <% elsif user_signed_in? %>
+              <%= link_to('Logout', destroy_user_session_path, method: :delete ,:class => 'nav-link')%>
+            <% end %>
           </li>
         </ul>
       </div>
@@ -49,13 +65,13 @@
 
 
     <%= yield %>
-
-  <footer class="py-5 bg-dark">
+<div id="ant-foot"></div>
+  <div id="foot" class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
     </div>
     <!-- /.container -->
-  </footer>
-
+  </div>
+  </div>
   </body>
 </html>

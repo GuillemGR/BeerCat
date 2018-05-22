@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  resources :cathegories
   devise_for :users
   resources :products
   root 'welcome#index'

@@ -8,3 +8,4 @@ cat:
   ex: "Catala"
   full_name: "Nom Complet"
   description: "Descripcio"
+  catalog: "Productes"

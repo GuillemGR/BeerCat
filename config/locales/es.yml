@@ -9,3 +9,4 @@ es:
   param: "Parametro"
   full_name: "Nombre Completo"
   description: "Descripcion"
+  catalog: "Catalogo"

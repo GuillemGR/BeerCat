@@ -6,8 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-español = Language.create(code:'es', name: 'Español')
-Language.create(code:'cat', name: 'Catala')
-Language.create(code:'en', name: 'English')
-p1 = Product.create(name: 'Birra')
-Description.create(product: p1, language: español, description: 'ES DESC')
+cat = Cathegory.create(name: 'Alcohol')
+Cathegory.create(name: 'Free Alcohol' )
+p1 = Product.create(name: 'Birra', cathegory_id: cat.id)
+
+desc1 = Description.create(description: 'Desc es', language: 'es')
+desc2 = Description.create(description: 'Desc cat', language: 'cat')
+desc3 = Description.create(description: 'Desc en', language: 'en')
+
+p1.descriptions << [desc1, desc2, desc3]
