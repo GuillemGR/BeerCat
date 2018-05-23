@@ -6,7 +6,6 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.string :image
       t.string :producer
       t.integer :quantity
-      t.boolean :alcohol
       t.references :cathegory, index: :true
       t.timestamps
     end

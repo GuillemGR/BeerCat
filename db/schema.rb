@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 20180522172540) do
     t.string "image"
     t.string "producer"
     t.integer "quantity"
-    t.boolean "alcohol"
     t.integer "cathegory_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
