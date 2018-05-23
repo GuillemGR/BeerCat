@@ -5,5 +5,10 @@
   <%= @cathegory.name %>
 </p>
 
+<%@product_list.each do |product| %>
+  <%= product.name %>
+
+<% end %>
+
 <%= link_to 'Edit', edit_cathegory_path(@cathegory) %> |
 <%= link_to 'Back', cathegories_path %>

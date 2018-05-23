@@ -4,7 +4,14 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+
+    if params[:alcohol] == 'true'
+      @products = Product.where(alcohol: true);
+    elsif params[:alcohol] == 'false'
+      @products = Product.where(alcohol: false);
+    else
+      @products = Product.all
+    end
   end
 
   # GET /products/1
