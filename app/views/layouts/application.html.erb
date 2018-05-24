@@ -15,7 +15,7 @@
     <title>BeerCat</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   </head>
@@ -30,33 +30,42 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
           <li class="nav-item">
-            <form action="/products" method="get">
-              <input type="text" name="query">
-              <input type="submit" value=<%=t('buscar')%>>
-            </form>
+            <a href="/cart" class="btn btn-secondary">
+              <i class="fa fa-shopping-cart" style="font-size:20px"></i> (<%= @num_commands %>)
+            </a>
           </li>
+          <% end %>
           <li class="nav-item">
             <% if user_signed_in? %>
-              <p class="navbar-brand" >Welcome</p>
+              <a class="nav-link">Welcome</a>
             <% else %>
             <%= link_to 'Login', user_session_path, {:class => 'nav-link'} %>
             <% end %>
           </li>
           <li class="nav-item">
-
             <%= link_to t('catalog'), products_path, {:class => 'nav-link'} %>
+          </li>
+
+          <li class="nav-item">
+            <form action="/products" method="get">
+              <input type="text" name="query">
+              <input type="submit" value=<%= t('buscar') %>>
+            </form>
           </li>
           <li class="nav-item">
             <% if admin_signed_in? %>
               <%= link_to('Logout admin', destroy_admin_session_path, method: :delete, :class => 'nav-link') %>
             <% elsif user_signed_in? %>
-              <%= link_to('Logout', destroy_user_session_path, method: :delete ,:class => 'nav-link')%>
+              <%= link_to('Logout', destroy_user_session_path, method: :delete, :class => 'nav-link') %>
             <% end %>
           </li>
         </ul>
       </div>
-      <div class="dropdown">
+
+    </div>
+      <div style="float : right" class="dropdown">
         <button class="btn btn-secondary dropdown-toggle">Idioma <i class=""></i></button>
         <div class="dropdown-content">
           <%= link_to 'Catala', {:locale => 'cat'} %>
@@ -64,7 +73,6 @@
           <%= link_to 'English', {:locale => 'en'} %>
         </div>
       </div>
-    </div>
   </nav>
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180522172540) do
+ActiveRecord::Schema.define(version: 20180523174239) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20180522172540) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "commands", force: :cascade do |t|
+    t.float "price"
+    t.string "state"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_commands_on_user_id"
+  end
+
   create_table "descriptions", force: :cascade do |t|
     t.text "description"
     t.string "language"
@@ -42,6 +51,17 @@ ActiveRecord::Schema.define(version: 20180522172540) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_descriptions_on_product_id"
+  end
+
+  create_table "line_commands", force: :cascade do |t|
+    t.float "price"
+    t.integer "quantity"
+    t.integer "command_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["command_id"], name: "index_line_commands_on_command_id"
+    t.index ["product_id"], name: "index_line_commands_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|

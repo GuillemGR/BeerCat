@@ -1,0 +1,22 @@
+<div class="container">
+<table class="table">
+  <tr>
+    <th><%=t('name') %></th>
+    <th><%=t('quantity_cart') %></th>
+    <th><%=t('price') %></th>
+    <th></th>
+  </tr>
+    <tbody>
+    <%@current_command.line_commands.each do |line| %>
+    <tr>
+      <td><p><%=line.product.name %></p></td>
+      <td><p><%= line.quantity %></p></td>
+      <td><p><%= line.price %></p></td>
+      <td><i class="fa fa-close" style="color: red"></i></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+  <p>Total: <%= @current_command.price %></p>
+  <%=link_to t('pay') , pay_cart_path%>
+</div>

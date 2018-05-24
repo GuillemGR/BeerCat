@@ -15,3 +15,5 @@ cat:
   Roja: "Cerveses Roges"
   Negra: "Cerveses Negres"
   buscar: "Cerca"
+  quantity_cart: "Quantitat"
+  pay: "Pagar"
