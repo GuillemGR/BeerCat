@@ -1,0 +1,20 @@
+<div class="container" style="margin-bottom : 25%">
+  <table class="table">
+    <tr>
+      <th><%= t('name') %></th>
+      <th><%= t('quantity_cart') %></th>
+      <th><%= t('price') %></th>
+    </tr>
+    <tbody>
+    <% @current_command.line_commands.each do |line| %>
+      <tr>
+        <td><p><%= line.product.name %></p></td>
+        <td><p><%= line.quantity %></p></td>
+        <td><p><%= line.price %></p></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <p style="float: left">Total: <%= @current_command.price %></p>
+  <p style="margin-left: 25%;"><%= t('state')%>: <span style="color: green"><%= t(@current_command.state) %></span> </p>
+</div>
