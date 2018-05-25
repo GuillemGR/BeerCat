@@ -16,22 +16,25 @@
 
   <tbody>
     <%@products.each do |product| %>
-      <tr>
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src=<%=product.image%> alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <%= link_to product.name, product %>
-              </h4>
-              <h5><%= product.price%> '€'</h5>
-            </div>
-            <div class="card-footer">
-              <p class="text-muted"><%=product.producer%></p>
-            </div>
+    <tr>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src=<%=product.image%> alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <%= link_to product.name, product %>
+            </h4>
+            <% if user_signed_in? %>
+              <%= link_to 'Add to Cart', addcart_path(product.id)%>
+            <% end %>
+            <h5><%= product.price%> €</h5>
+          </div>
+          <div class="card-footer">
+            <p class="text-muted"><%=product.producer%></p>
           </div>
         </div>
-      </tr>
+      </div>
+    </tr>
     <% end %>
   </tbody>
 </table>

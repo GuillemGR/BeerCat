@@ -4,7 +4,15 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-      @products = Product.all
+    @products = Product.all
+    if params[:cathegory]
+      @products = Product.where(cathegory_id: params[:cathegory]).find_each
+    end
+    if params[:query]
+      @products = Product.where("name like ? OR producer like ?", "%#{params[:query]}%", "%#{params[:query]}%").find_each
+    end
+
+
   end
 
   # GET /products/1

@@ -6,9 +6,9 @@
 
       <h1 class="my-4"></h1>
       <div class="list-group">
-        <a href="/cathegories/1" class="list-group-item"><%= t("Rossa")%></a>
-        <a href="/cathegories/2" class="list-group-item"><%= t("Roja")%></a>
-        <a href="/cathegories/3" class="list-group-item"><%= t("Negra")%></a>
+        <a href="/products?cathegory=1" class="list-group-item"><%= t("Rossa")%></a>
+        <a href="/products?cathegory=2" class="list-group-item"><%= t("Roja")%></a>
+        <a href="/products?cathegory=3" class="list-group-item"><%= t("Negra")%></a>
       </div>
 
     </div>
@@ -57,7 +57,7 @@
                   <% if user_signed_in? %>
                     <%= link_to 'Add to Cart', addcart_path(product.id)%>
                   <% end %>
-                  <h5><%= product.price%> '€'</h5>
+                  <h5><%= product.price%> €</h5>
                 </div>
                 <div class="card-footer">
                   <p class="text-muted"><%=product.producer%></p>
