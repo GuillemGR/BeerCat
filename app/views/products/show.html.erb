@@ -28,6 +28,12 @@
   <strong>Cathegory:</strong>
   <%= @cathegory %>
 </p>
+<p>
+  <strong><% if user_signed_in? %>
+      <%= link_to 'Add to Cart', addcart_path(@product.id)%>
+    <% end %></strong>
+</p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+
