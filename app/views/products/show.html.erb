@@ -25,8 +25,8 @@
   <%= @description %>
 </p>
 <p>
-  <strong>Cathegory:</strong>
-  <%= @cathegory %>
+  <strong><%=t('category') %>:</strong>
+  <%= t(@cathegory) %>
 </p>
   <% if user_signed_in? %>
     <%= link_to t('addcart'), addcart_path(@product.id) %>

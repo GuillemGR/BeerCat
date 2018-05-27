@@ -37,3 +37,7 @@ cat:
   edit_user: "Editar les meves dades"
   category: "Categoria"
   addcart: "Afegir a la cistella"
+  current_password: "Contrassenya actual"
+  update: "Acutalizar"
+  cancel_account: "Cancel·lar compte"
+  back: "Enrere"

@@ -6,9 +6,9 @@
 
       <h1 class="my-4"></h1>
       <div class="list-group">
-        <a href="/products?cathegory=1" class="list-group-item"><%= t("Rossa")%></a>
-        <a href="/products?cathegory=2" class="list-group-item"><%= t("Roja")%></a>
-        <a href="/products?cathegory=3" class="list-group-item"><%= t("Negra")%></a>
+        <a href="/products?cathegory=1&locale=<%=I18n.locale%>" class="list-group-item"><%= t("Rossa")%></a>
+        <a href="/products?cathegory=2&locale=<%=I18n.locale%>" class="list-group-item"><%= t("Roja")%></a>
+        <a href="/products?cathegory=3&locale=<%=I18n.locale%>" class="list-group-item"><%= t("Negra")%></a>
       </div>
 
     </div>
@@ -18,19 +18,19 @@
 
       <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
         <ol class="carousel-indicators">
-          <li data-target="/products/7" data-slide-to="0" class="active"></li>
-          <li data-target="/products/8" data-slide-to="1"></li>
-          <li data-target="/products/9" data-slide-to="2"></li>
+          <li data-target="/products/7?locale=<%=I18n.locale%>" data-slide-to="0" class="active"></li>
+          <li data-target="/products/8?locale=<%=I18n.locale%>" data-slide-to="1"></li>
+          <li data-target="/products/9?locale=<%=I18n.locale%>" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
           <div class="carousel-item active">
-            <a href="/products/7"><img class="d-block img-fluid" src="https://i.imgur.com/ilpsNbj.png" alt="First slide"></a>
+            <a href="/products/7?locale=<%=I18n.locale%>"><img class="d-block img-fluid" src="https://i.imgur.com/ilpsNbj.png" alt="First slide"></a>
           </div>
           <div class="carousel-item">
-            <a href="/products/8"><img class="d-block img-fluid" src="https://i.imgur.com/xFd7LEi.png" alt="Second slide"></a>
+            <a href="/products/8?locale=<%=I18n.locale%>"><img class="d-block img-fluid" src="https://i.imgur.com/xFd7LEi.png" alt="Second slide"></a>
           </div>
           <div class="carousel-item">
-            <a href="/products/9"><img class="d-block img-fluid" src="https://i.imgur.com/j4RkeG2.png" alt="Third slide"></a>
+            <a href="/products/9?locale=<%=I18n.locale%>"><img class="d-block img-fluid" src="https://i.imgur.com/j4RkeG2.png" alt="Third slide"></a>
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -55,10 +55,10 @@
                     <%= link_to product.name, product %>
                   </h4>
                   <% if user_signed_in? %>
-                    <%= link_to t('addcart'), addcart_path(product.id)%>
+                    <%= link_to t('addcart'), addcart_path(product.id, :locale => I18n.locale)%>
                   <% end %>
                   <% if admin_signed_in? %>
-                    <%= link_to t('edit_product'), edit_product_path(product.id) %>
+                    <%= link_to t('edit_product'), edit_product_path(product.id, :locale => I18n.locale) %>
                   <% end %>
                   <h5><%= product.price%> €</h5>
                 </div>

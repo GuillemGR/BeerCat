@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a href="/welcome"><img class="navbar-brand-logo" src="https://i.imgur.com/FMMdKxT.png" alt=""></a>
-      <a class="navbar-brand" href="/welcome">BeerCat</a>
+      <a class="navbar-brand" href="/welcome?locale=<%=I18n.locale%>">BeerCat</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -37,7 +37,7 @@
           </li>
 
           <li class="nav-item">
-            <form action="/products" method="get">
+            <form action="/products?locale=<%=I18n.locale%>" method="get">
               <input type="text" name="query">
               <input type="submit" value=<%= t('buscar') %>>
             </form>
@@ -51,31 +51,31 @@
           </li>
           <li class="nav-item">
             <% unless user_signed_in? %>
-              <%= link_to t('register'), new_user_registration_path, {:class => 'nav-link'} %>
+              <%= link_to t('register'), new_user_registration_path(:locale => I18n.locale), {:class => 'nav-link'} %>
             <% end %>
           </li>
           <% if user_signed_in? %>
             <li class="nav-item">
-                <%= link_to t('user_panel'), user_panel_path, method: :get, :class => 'btn btn-secondary' %>
+                <%= link_to t('user_panel'), user_panel_path(:locale => I18n.locale), method: :get, :class => 'btn btn-secondary' %>
             </li>
           <% end %>
           <% if admin_signed_in? %>
             <li class="nav-item">
-              <%= link_to t('admin_panel'), admin_panel_path, method: :get, :class => 'btn btn-secondary' %>
+              <%= link_to t('admin_panel'), admin_panel_path(:locale => I18n.locale), method: :get, :class => 'btn btn-secondary' %>
             </li>
           <% end %>
           <% if user_signed_in? %>
             <li class="nav-item">
-              <a href="/cart" class="btn btn-secondary">
+              <a href="/cart?locale=<%=I18n.locale%>" class="btn btn-secondary">
                 <i class="fa fa-shopping-cart" style="font-size:20px"></i> (<%= @num_commands %>)
               </a>
             </li>
           <% end %>
           <li class="nav-item">
             <% if admin_signed_in? %>
-              <%= link_to('Logout admin', destroy_admin_session_path, method: :delete, :class => 'nav-link') %>
+              <%= link_to('Logout admin', destroy_admin_session_path(:locale => I18n.locale), method: :delete, :class => 'nav-link') %>
             <% elsif user_signed_in? %>
-              <%= link_to('Logout', destroy_user_session_path, method: :delete, :class => 'btn btn-secondary') %>
+              <%= link_to('Logout', destroy_user_session_path(:locale => I18n.locale), method: :delete, :class => 'btn btn-secondary') %>
             <% end %>
           </li>
         </ul>

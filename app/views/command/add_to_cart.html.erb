@@ -13,15 +13,17 @@
       <td><p><%=line.product.name %></p></td>
       <td><p><%= line.quantity %></p></td>
       <td><p><%= line.price %></p></td>
-      <td><i class="fa fa-close" style="color: red"></i></td>
+      <td><%=link_to 'Delete',remove_item_path(line.id), :method => 'delete'%></td>
     </tr>
     <% end %>
   </tbody>
 </table>
-  <p>Total: <%= @current_command.price %></p>
+  <p>Total: <%= @current_command.price %> €</p>
+
     <div id="paypal-button-container"></div>
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <script>
+
         paypal.Button.render({
             env: 'sandbox', // sandbox | production
             // Show the buyer a 'Pay Now' button in the checkout flow
@@ -31,7 +33,7 @@
                 // Set up a url on your server to create the payment
                 var CREATE_URL = '/createpayment';
                 // Make a call to your server to set up the payment
-                return paypal.request.post(CREATE_URL)
+                return paypal.request.post(CREATE_URL, { id: "<%=@current_command.id %>"})
                   .then(function(res) {
                     console.log("Result: "+res.paymentID);
                     return res.paymentID;
@@ -49,7 +51,7 @@
                 // Make a call to your server to execute the payment
                 return paypal.request.post(EXECUTE_URL, data)
                     .then(function (res) {
-                        window.alert('Payment Complete!');
+                        window.location.replace("/paymentcompleted");
                     });
             }
         }, '#paypal-button-container');

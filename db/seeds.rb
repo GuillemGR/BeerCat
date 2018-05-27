@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-cat = Cathegory.create(name: 'Rosses')
+cat = Cathegory.create(name: 'Rossa')
 cat2 = Cathegory.create(name: 'Roja')
 cat3 = Cathegory.create(name: 'Negra')
 p1 = Product.create(name: 'La Pubilla', producer: 'La Masovera', price: 2.75,image: 'https://lamasovera.cat/wp-content/uploads/2016/05/pubilla.png',cathegory_id: cat.id)
@@ -83,3 +83,5 @@ p10.descriptions << [desc1, desc2, desc3]
 
 admin = Admin.create(email: 'admin@admin.com', password: '123456', password_confirmation: '123456')
 admin.save
+user = User.create(email: 'user@user.com', password: '123456', password_confirmation: '123456')
+user.save

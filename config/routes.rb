@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   get '/userpanel', to: 'user_panel#index', as: 'user_panel'
   get '/commandetails/:id', to: 'user_panel#command_details', as: 'command_details'
   get '/adminpanel', to: 'admin_panel#index', as: 'admin_panel'
+  get '/paymentcompleted', to: 'command#payment_completed'
+  delete '/removeitem/:id', to:'command#remove_item', as: 'remove_item'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

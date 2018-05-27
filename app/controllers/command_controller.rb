@@ -1,7 +1,7 @@
 class CommandController < ApplicationController
-
   before_action :check_user, :except => [:createpayment, :executepayment]
   before_action :set_paypaltoken, :only => [:createpayment, :executepayment]
+  before_action :get_current_commnand, :only => [:createpayment]
   @current_command
   def add_to_cart
     @product = Product.find(params[:id])
@@ -30,8 +30,17 @@ class CommandController < ApplicationController
     render 'add_to_cart'
   end
 
+  def remove_item
+    @current_command = current_user.commands.find_by(state: 'current')
+    price = @current_command.price - @current_command.line_commands.find(params[:id]).price
+    @current_command.line_commands.find(params[:id]).destroy
+    @current_command.update(price: price)
+    render 'add_to_cart'
+  end
+
+
   def set_paypaltoken
-    @paypaltoken = 'A21AAEutydnjSBAqMTYzVTwPpOkcRhLGAmcfvc_-om3nkSwe8fCnO_mTWhYrqM5myWi6JQ0xPM6PvZfcvTuwoyD9vxth5fO8Q'
+      @paypaltoken = 'A21AAEH98LinFnJ9NyGgrFyvDrOPci7Vb3-LwUZ6T_vfTht3U9FCaJhzYAeVIo032R9811loCijtHFJrZyzAqj5mazgw4s0NQ'
   end
 
   def createpayment
@@ -39,7 +48,7 @@ class CommandController < ApplicationController
         HTTParty.post('https://api.sandbox.paypal.com/v1/payments/payment',
                       :headers => { 'Content-Type' => 'application/json', 'Authorization' => "Bearer #{@paypaltoken}"},
                       :body =>  {   :intent => 'sale', :redirect_urls => {'return_url' => 'https://example.com','cancel_url' => 'https://example.com'},
-                                    :payer => {'payment_method' => 'paypal'}, :transactions => [{'amount' => {'total' => '3.00', 'currency' => 'EUR'}}]
+                                    :payer => {'payment_method' => 'paypal'}, :transactions => [{'amount' => {'total' => @current_command.price, 'currency' => 'EUR'}}]
                       }.to_json, :debug_output => Rails.logger)
         render json: {
               paymentID: "#{@response["id"]}"
@@ -52,10 +61,19 @@ class CommandController < ApplicationController
                       :body =>  {   :payer_id => "#{params[:payerID]}"}.to_json, :debug_output => Rails.logger)
   end
 
+  def payment_completed
+    @current_command = current_user.commands.find_by(state: 'current')
+    @current_command.update(state: 'paid')
+    render 'user_panel/command_details'
+  end
+
   private
   def check_user
     unless user_signed_in?
       redirect_to '/users/sign_in'
     end
+  end
+  def get_current_commnand
+     @current_command = Command.find(params[:id])
   end
 end

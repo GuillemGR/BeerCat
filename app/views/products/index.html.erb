@@ -17,10 +17,10 @@
             <a href="#"><img class="card-img-top" src=<%=product.image%> alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <%= link_to product.name, product %>
+                <%= link_to product.name, product_path(product.id ,:locale => I18n.locale) %>
               </h4>
               <% if user_signed_in? %>
-                <%= link_to t('addcart'), addcart_path(product.id)%>
+                <%= link_to t('addcart'), addcart_path(product.id, :locale => I18n.locale)%>
               <% end %>
               <h5><%= product.price%> €</h5>
             </div>

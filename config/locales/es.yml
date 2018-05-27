@@ -39,3 +39,7 @@ es:
   edit_user: "Editar mis datos"
   category: "Categoria"
   addcart: "Añadir al carrito"
+  current_password: "Contraseña actual"
+  update: "Actualizar"
+  cancel_account: "Cancelar cuenta"
+  back: "Atras"

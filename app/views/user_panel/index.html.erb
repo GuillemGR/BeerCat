@@ -16,7 +16,7 @@
           <td><%=command.id %> </td>
           <td><%=command.created_at %></td>
           <td><%=t(command.state) %></td>
-          <td><%= link_to t('details'),command_details_path(command.id), {:class => 'btn btn-secondary'} %> </td>
+          <td><%= link_to t('details'),command_details_path(command.id,:locale => I18n.locale), {:class => 'btn btn-secondary'} %> </td>
         </tr>
     <% end %>
     </table>
