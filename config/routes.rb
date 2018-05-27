@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/addcart/:id', to: 'command#add_to_cart', as: 'addcart'
   get '/cart', to: 'command#cart', as: 'cart'
   get '/paycart', to: 'command#pay_cart', as: 'pay_cart'
+  post '/createpayment', to: 'command#createpayment'
+  post '/executepayment', to: 'command#executepayment'
   get '/userpanel', to: 'user_panel#index', as: 'user_panel'
   get '/commandetails/:id', to: 'user_panel#command_details', as: 'command_details'
   get '/adminpanel', to: 'admin_panel#index', as: 'admin_panel'
