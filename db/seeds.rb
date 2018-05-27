@@ -79,3 +79,7 @@ desc2 = Description.create(description: 'Color wengé fosc i brillant. Opaca deg
 desc3 = Description.create(description: 'Wenge color, dark and shiny. Opaque due to its intensity', language: 'en')
 
 p10.descriptions << [desc1, desc2, desc3]
+
+
+admin = Admin.create(email: 'admin@admin.com', password: '123456', password_confirmation: '123456')
+admin.save

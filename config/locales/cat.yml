@@ -35,3 +35,5 @@ cat:
   password_confirm: "Repeteix la contrassenya"
   surname: "Cognoms"
   edit_user: "Editar les meves dades"
+  category: "Categoria"
+  addcart: "Afegir a la cistella"

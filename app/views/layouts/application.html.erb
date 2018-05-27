@@ -58,6 +58,11 @@
                 <%= link_to t('user_panel'), user_panel_path, method: :get, :class => 'btn btn-secondary' %>
             </li>
           <% end %>
+          <% if admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to t('admin_panel'), admin_panel_path, method: :get, :class => 'btn btn-secondary' %>
+            </li>
+          <% end %>
           <% if user_signed_in? %>
             <li class="nav-item">
               <a href="/cart" class="btn btn-secondary">

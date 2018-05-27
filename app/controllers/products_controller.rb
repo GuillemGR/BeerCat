@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_is_admin, only: [:new, :edit, :create, :update, :destroy]
   # GET /products
   # GET /products.json
   def index
@@ -46,6 +46,13 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+      @description_es = @product.descriptions.find_by(language: 'es').description
+
+      @description_cat = @product.descriptions.find_by(language: 'cat').description
+
+      @description_en = @product.descriptions.find_by(language: 'en').description
+
+    @cathegory =  Cathegory.find(@product.cathegory_id).name
   end
 
   # POST /products
@@ -71,6 +78,10 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    @product.descriptions.find_by(language: 'es').update(description: params[:product][:description_es])
+    @product.descriptions.find_by(language: 'cat').update(description: params[:product][:description_cat])
+    @product.descriptions.find_by(language: 'en').update(description: params[:product][:description_en])
+
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
@@ -93,6 +104,12 @@ class ProductsController < ApplicationController
   end
 
   private
+
+    def check_is_admin
+      unless admin_signed_in?
+        redirect_to '/welcome'
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])

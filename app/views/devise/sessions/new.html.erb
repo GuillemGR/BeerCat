@@ -15,6 +15,7 @@
     <%= f.submit t('sign_in') %>
   </div>
 <% end %>
-
+  <% if request.original_fullpath.include? "/users/sign_in" %>
 <%= render "devise/shared/links" %>
+  <% end %>
 </div>

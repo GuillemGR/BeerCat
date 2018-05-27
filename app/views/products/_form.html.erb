@@ -1,3 +1,4 @@
+<div style="margin-bottom: 10%" class="container register">
 <%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
@@ -12,48 +13,48 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name %><br>
     <%= form.text_field :name, id: :product_name %>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
+    <%= form.label :price %><br>
     <%= form.text_field :price, id: :product_price %>
   </div>
 
   <div class="field">
-    <%= form.label :image %>
+    <%= form.label :image %><br>
     <%= form.text_field :image, id: :product_image %>
   </div>
 
   <div class="field">
-    <%= form.label :producer %>
+    <%= form.label :producer %><br>
     <%= form.text_field :producer, id: :product_producer %>
   </div>
 
   <div class="field">
-    <%= form.label :quantity %>
+    <%= form.label :quantity %><br>
     <%= form.number_field :cathegories, id: :product_quantity %>
   </div>
 
   <div class="field">
-    <%= form.label t('description')+' Español' %>
-    <%= form.text_area 'description_es', id: :description_es %>
-  </div>
-
-  <div class="field">
-    <%= form.label t('description')+' Catala' %>
-    <%= form.text_area 'description_cat', id: :description_cat %>
-  </div>
-
-  <div class="field">
-    <%= form.label t('description')+' English' %>
-    <%= form.text_area 'description_en', id: :description_en %>
+    <%= form.label t('description')+' Español' %><br>
+    <%= form.text_area 'description_es', id: :description_es ,:value => @description_es, cols: "50", rows: "5" %>
   </div>
   <div class="field">
+    <%= form.label t('description')+' Catala' %><br>
+    <%= form.text_area 'description_cat', id: :description_cat ,:value => @description_cat,cols: "50", rows: "5"  %>
+  </div>
+  <div class="field">
+    <%= form.label t('description')+' English' %><br>
+    <%= form.text_area 'description_en', id: :description_en ,:value => @description_en,cols: "50", rows: "5"  %>
+  </div>
+  <div class="field">
+    <%=form.label t('category') %> <br>
    <%= form.collection_select :cathegory_id, Cathegory.all, :id, :name %>
   </div>
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+</div>

@@ -1,3 +1,8 @@
+<div id="product" class="row">
+  <div class="col-lg-6">
+    <img src="<%=@product.image %>" alt="Could not load the image">
+  </div>
+<div class="col-lg-6">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -7,17 +12,12 @@
 
 <p>
   <strong><%=t('price')%>:</strong>
-  <%= @product.price %>
+  <%= @product.price %> €
 </p>
 
 <p>
   <strong><%=t('producer')%>:</strong>
   <%= @product.producer %>
-</p>
-
-<p>
-  <strong><%=t('quantity')%>:</strong>
-  <%= @product.quantity %>
 </p>
 
 <p>
@@ -28,6 +28,12 @@
   <strong>Cathegory:</strong>
   <%= @cathegory %>
 </p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+  <% if user_signed_in? %>
+    <%= link_to t('addcart'), addcart_path(@product.id) %>
+  <% end %>
+<% if admin_signed_in? %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+<% end %>
+</div>
+</div>

@@ -37,3 +37,5 @@ es:
   password_confirm: "Repite la contrassenya"
   surname: "Apellidos"
   edit_user: "Editar mis datos"
+  category: "Categoria"
+  addcart: "Añadir al carrito"
